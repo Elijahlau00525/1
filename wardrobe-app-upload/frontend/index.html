@@ -1,0 +1,186 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>衣橱搭搭</title>
+    <meta name="theme-color" content="#1f6a53" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="bg"></div>
+
+    <main class="phone-shell">
+      <header class="topbar">
+        <div>
+          <p class="brand">LOOKBOOK LAB</p>
+          <h1>衣橱搭搭</h1>
+        </div>
+        <div class="topbar-actions">
+          <label class="theme-picker" for="theme-select">
+            主题
+            <select id="theme-select">
+              <option value="atelier">奶油通勤</option>
+              <option value="metro">都市冷调</option>
+              <option value="sunset">晚风约会</option>
+            </select>
+          </label>
+          <button id="logout-btn" class="ghost-btn hidden" type="button">退出</button>
+        </div>
+      </header>
+
+      <section id="auth-view" class="card auth-card">
+        <div class="auth-tabs">
+          <button class="tab active" data-tab="login" type="button">登录</button>
+          <button class="tab" data-tab="register" type="button">注册</button>
+        </div>
+
+        <form id="login-form" class="auth-form">
+          <label>
+            账号
+            <input type="text" name="username" placeholder="输入用户名" required />
+          </label>
+          <label>
+            密码
+            <input type="password" name="password" placeholder="至少 6 位" required />
+          </label>
+          <button class="primary-btn" type="submit">登录</button>
+        </form>
+
+        <form id="register-form" class="auth-form hidden">
+          <label>
+            账号
+            <input type="text" name="username" placeholder="3-64 位" required />
+          </label>
+          <label>
+            密码
+            <input type="password" name="password" placeholder="至少 6 位" required />
+          </label>
+          <button class="primary-btn" type="submit">创建账号</button>
+        </form>
+
+        <div class="social-login">
+          <p>或使用社交登录</p>
+          <div class="social-row">
+            <button id="wechat-login" class="social-btn" type="button">微信登录</button>
+            <button id="qq-login" class="social-btn" type="button">QQ 登录</button>
+          </div>
+          <p id="social-status" class="hint"></p>
+        </div>
+        <p id="auth-message" class="hint"></p>
+      </section>
+
+      <section id="app-view" class="hidden">
+        <section class="card hero-card">
+          <div>
+            <p class="tiny">今日风格建议</p>
+            <h2 id="welcome-title">欢迎回来</h2>
+            <p class="hint">上传新衣物后，系统会基于高分穿搭规则自动推荐。</p>
+          </div>
+        </section>
+
+        <section class="card upload-card">
+          <h3>上传衣物</h3>
+          <form id="upload-form" class="upload-form">
+            <label>
+              名称
+              <input id="item-name" type="text" required placeholder="例如：米白针织衫" />
+            </label>
+            <div class="row-2">
+              <label>
+                分类
+                <select id="item-category">
+                  <option value="auto">自动识别</option>
+                  <option value="top">上衣</option>
+                  <option value="bottom">下装</option>
+                  <option value="outer">外套</option>
+                  <option value="shoes">鞋子</option>
+                  <option value="accessory">配饰</option>
+                </select>
+              </label>
+              <label>
+                场景
+                <select id="item-occasion">
+                  <option value="daily">日常</option>
+                  <option value="work">通勤</option>
+                  <option value="date">约会</option>
+                  <option value="sport">运动</option>
+                  <option value="all">不限</option>
+                </select>
+              </label>
+            </div>
+            <div class="row-2">
+              <label>
+                版型
+                <select id="item-fit">
+                  <option value="auto">自动识别</option>
+                  <option value="slim">修身</option>
+                  <option value="regular">常规</option>
+                  <option value="loose">宽松</option>
+                </select>
+              </label>
+              <label>
+                保暖
+                <input id="item-warmth" type="range" min="1" max="5" value="2" />
+              </label>
+            </div>
+            <label>
+              PNG 图片
+              <input id="item-image" type="file" accept="image/png" multiple required />
+            </label>
+            <button class="primary-btn" type="submit">加入衣橱</button>
+          </form>
+          <p id="upload-message" class="hint"></p>
+        </section>
+
+        <section class="card recommend-card">
+          <div class="card-head">
+            <h3>智能搭配</h3>
+            <select id="recommend-occasion">
+              <option value="all">全部</option>
+              <option value="daily">日常</option>
+              <option value="work">通勤</option>
+              <option value="date">约会</option>
+              <option value="sport">运动</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button id="recommend-btn" class="primary-btn" type="button">生成一套</button>
+          </div>
+          <p id="recommend-message" class="hint"></p>
+          <div id="outfit-grid" class="outfit-grid empty">先上传衣物再生成搭配。</div>
+        </section>
+
+        <section class="card closet-card">
+          <div class="card-head">
+            <h3>我的衣橱</h3>
+            <span id="item-count">0 件</span>
+          </div>
+          <div id="closet-grid" class="closet-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="item-template">
+      <article class="item">
+        <img alt="clothing" />
+        <div class="meta">
+          <h4></h4>
+          <p class="line"></p>
+          <p class="line color-line"><span class="dot"></span><span class="hex"></span></p>
+          <button class="danger-btn" type="button">删除</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="/assets/runtime-config.js"></script>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>

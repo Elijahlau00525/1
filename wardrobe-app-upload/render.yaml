@@ -1,0 +1,16 @@
+﻿services:
+  - type: web
+    name: wardrobe-dada
+    runtime: docker
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: DEBUG
+        value: "false"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "https://your-app.onrender.com,http://localhost:8000,http://127.0.0.1:8000,http://localhost,capacitor://localhost,ionic://localhost"
+      # SQLite is fine for demo. For production, set DATABASE_URL to PostgreSQL.
+      - key: DATABASE_URL
+        value: "sqlite:///./backend/wardrobe.db"

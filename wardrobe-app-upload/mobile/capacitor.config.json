@@ -1,0 +1,6 @@
+﻿{
+  "appId": "com.wardrobe.dada",
+  "appName": "衣橱搭搭",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

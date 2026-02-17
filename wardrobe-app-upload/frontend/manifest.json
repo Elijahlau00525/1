@@ -1,0 +1,9 @@
+﻿{
+  "name": "衣橱搭搭",
+  "short_name": "衣橱搭搭",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#efe5d8",
+  "theme_color": "#1f6a53",
+  "description": "电子衣橱与智能穿搭推荐应用"
+}
